@@ -2,6 +2,8 @@ package internal
 
 import (
 	"in-mai-space/portfolio/internal/config"
+	"in-mai-space/portfolio/internal/middlewares"
+	"in-mai-space/portfolio/internal/routes"
 
 	go_json "github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
@@ -20,7 +22,7 @@ func InitApp(db *gorm.DB, config *config.GlobalConfig) *fiber.App {
 
 	configureMiddlewares(app)
 
-	setUpRoutes(app, db, config)
+	routes.SetUpRoutes(app, db, config, middlewares.IsValidJWTToken(config))
 
 	return app
 }
@@ -57,16 +59,4 @@ func configureMiddlewares(app *fiber.App) {
 	app.Use(logger.New(logger.Config{
 		Format: "${time} ${ip} ${method} ${path} ${status} ${latency}\n",
 	}))
-}
-
-// setup app routes
-func setUpRoutes(app *fiber.App, db *gorm.DB, config *config.GlobalConfig) {
-
-	// authRoutes := app.Group("/auth")
-	// v1 := authRoutes.Group("/v1")
-
-	// apiRoutes := app.Group("/api")
-	// v1 = apiRoutes.Group("/v1")
-	// // set up routes for api & handlers & services
-	// routes.SetUpRoutes(app, db, config, middlewares.IsValidJWTToken())
 }

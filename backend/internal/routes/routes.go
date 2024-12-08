@@ -8,12 +8,11 @@ import (
 )
 
 func SetUpRoutes(app *fiber.App, db *gorm.DB, config *config.GlobalConfig, authMiddleware func(*fiber.Ctx) error) {
-	api := app.Group("/api/v1")
+	HealthcheckRoute(app)
 
-	HealthcheckRoute(api)
-	SocialRoute(api)
-	TagRoute(api)
-	UserRoute(api)
-	ProjectRoute(api)
-	ExperienceRoute(api)
+	auth := app.Group("/auth/v1")
+	AuthenticationRoute(auth)
+
+	api := app.Group("/api/v1")
+	APIRoute(api, db, config, authMiddleware)
 }

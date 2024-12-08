@@ -2,14 +2,14 @@ package middlewares
 
 import (
 	"errors"
-	"os"
+	"in-mai-space/portfolio/internal/config"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func IsValidJWTToken() fiber.Handler {
+func IsValidJWTToken(config *config.GlobalConfig) fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		authHeader := ctx.Get("Authorization")
 
@@ -33,8 +33,7 @@ func IsValidJWTToken() fiber.Handler {
 			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, errors.New("wrong signing method")
 			}
-			jwtSecretKey := os.Getenv("APP_JWT_SECRET_KEY")
-			return []byte(jwtSecretKey), nil
+			return []byte(config.AuthenticationConfig.SupabaseSecretKey), nil
 		})
 
 		if err != nil || !token.Valid {
