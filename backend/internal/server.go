@@ -2,7 +2,9 @@ package internal
 
 import (
 	"in-mai-space/portfolio/internal/config"
-	"in-mai-space/portfolio/internal/middleware"
+	"in-mai-space/portfolio/internal/middlewares"
+
+	"in-mai-space/portfolio/internal/routes"
 
 	go_json "github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
@@ -69,6 +71,7 @@ func setUpRoutes(app *fiber.App, db *gorm.DB, config *config.GlobalConfig) {
 	// set up routes for auth & handlers & services
 
 	apiRoutes := app.Group("/api")
-	v1 = apiRoutes.Group("/v1", middleware.IsValidJWTToken())
+	v1 = apiRoutes.Group("/v1")
 	// set up routes for api & handlers & services
+	routes.SetUpRoutes(app, db, config, middlewares.IsValidJWTToken())
 }

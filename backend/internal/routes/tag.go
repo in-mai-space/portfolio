@@ -1,13 +1,17 @@
-package route
+package routes
 
 import "github.com/gofiber/fiber/v2"
 
 func TagRoute(app fiber.Router) {
 	route := app.Group("/tags")
 
-	// app.Post("/")
+	route.Get("/tags/:id/projects")
 
-	// app.Put("/:id")
+	route.Get("/tags/:id/experiences")
 
-	// app.Delete("/:id")
+	route.Post("/")
+
+	route.Put("/:id")
+
+	route.Delete("/:id")
 }

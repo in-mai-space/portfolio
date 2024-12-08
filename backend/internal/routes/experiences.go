@@ -1,15 +1,17 @@
-package route
+package routes
 
 import "github.com/gofiber/fiber/v2"
 
 func ExperienceRoute(app fiber.Router) {
-	app.Get("/experiences")
+	route := app.Group("/experiences")
 
-	app.Get("/experiences/:id")
+	route.Get("/")
 
-	app.Post("/experiences")
+	route.Get("/:id")
 
-	app.Put("/experiences/:id")
+	route.Post("/")
 
-	app.Delete("/experiences/:id")
+	route.Put("/:id")
+
+	route.Delete("/:id")
 }

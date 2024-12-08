@@ -1,8 +1,13 @@
-package route
+package routes
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"in-mai-space/portfolio/internal/config"
 
-func SetUpRoutes(app *fiber.App) {
+	"github.com/gofiber/fiber/v2"
+	"gorm.io/gorm"
+)
+
+func SetUpRoutes(app *fiber.App, db *gorm.DB, config *config.GlobalConfig, authMiddleware func(*fiber.Ctx) error) {
 	api := app.Group("/api/v1")
 
 	HealthcheckRoute(api)
