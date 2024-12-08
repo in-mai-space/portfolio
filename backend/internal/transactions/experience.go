@@ -1,7 +1,7 @@
 package transactions
 
 import (
-	model "in-mai-space/portfolio/models"
+	model "in-mai-space/portfolio/internal/models"
 
 	"github.com/google/uuid"
 	"gorm.io/gorm"

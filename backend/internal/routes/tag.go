@@ -3,9 +3,11 @@ package route
 import "github.com/gofiber/fiber/v2"
 
 func TagRoute(app fiber.Router) {
-	// app.Post("/user")
+	route := app.Group("/tags")
 
-	// app.Put("/user/:id")
+	// app.Post("/")
 
-	// app.Delete("/user/:id")
+	// app.Put("/:id")
+
+	// app.Delete("/:id")
 }

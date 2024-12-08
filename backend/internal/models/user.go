@@ -9,6 +9,7 @@ type User struct {
 	Password    string              `json:"password"`
 	Bio         string              `json:"bio"`
 	About       string              `json:"about"`
+	Photo       string              `json:"photo_url"`
 	Experiences []Experience        `json:"experiences" gorm:"foreignKey:UserID"`
 	Projects    []Project           `json:"projects" gorm:"foreignKey:UserID"`
 	SocialMedia []SocialMediaHandle `json:"socials" gorm:"foreignKey:UserID"`

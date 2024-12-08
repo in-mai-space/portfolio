@@ -4,7 +4,11 @@ go 1.23.2
 
 require github.com/joho/godotenv v1.5.1
 
-require github.com/stretchr/testify v1.8.4 // indirect
+require (
+	github.com/goccy/go-json v0.10.3 // indirect
+	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
+	github.com/stretchr/testify v1.8.4 // indirect
+)
 
 require (
 	github.com/andybalholm/brotli v1.0.5 // indirect
