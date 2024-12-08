@@ -13,6 +13,7 @@ func CreateExperience(db *gorm.DB, payload model.CreateExperiencePayload) (*mode
 		Company:     payload.Company,
 		Description: payload.Description,
 		UserID:      payload.UserID,
+		Tags:        payload.Tags,
 	}
 
 	if err := db.Create(experience).Error; err != nil {
@@ -30,6 +31,10 @@ func GetExperience(db *gorm.DB, id uuid.UUID) (*model.Experience, error) {
 	return experience, nil
 }
 
+func GetExperiencesByTag(db *gorm.DB, tags []*model.Tag) ([]*model.Experience, error) {
+	return nil, nil
+}
+
 func GetAllExperience(db *gorm.DB, page int, limit int) ([]*model.Experience, error) {
 	var experiences []*model.Experience
 	offset := (page - 1) * limit
@@ -41,7 +46,7 @@ func GetAllExperience(db *gorm.DB, page int, limit int) ([]*model.Experience, er
 	return experiences, nil
 }
 
-func UpdateExperience(db *gorm.DB, payload model.UpdateExperiencePayload, id uuid.UUID) (*model.Experience, error) {
+func UpdateExperience(db *gorm.DB, id uuid.UUID, payload model.UpdateExperiencePayload) (*model.Experience, error) {
 	experience := &model.Experience{}
 	if err := db.Where("id = ?", id).First(experience).Error; err != nil {
 		return nil, err
@@ -57,6 +62,9 @@ func UpdateExperience(db *gorm.DB, payload model.UpdateExperiencePayload, id uui
 		}
 		if payload.Description != nil {
 			updates["description"] = *payload.Description
+		}
+		if payload.Tags != nil {
+			updates["tags"] = payload.Tags
 		}
 
 		if err := db.Model(experience).Updates(updates).Error; err != nil {

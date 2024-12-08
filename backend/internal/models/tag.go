@@ -9,3 +9,8 @@ type Tag struct {
 	Experiences []Experience `json:"experiences" gorm:"many2many:experience_tags"`
 	Projects    []Project    `json:"projects" gorm:"many2many:project_tags"`
 }
+
+type CreateTagPayload struct {
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}

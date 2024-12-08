@@ -10,3 +10,17 @@ type Project struct {
 	Tags        []Tag     `json:"tags" gorm:"many2many:project_tags"`
 	UserID      uuid.UUID `json:"userId" gorm:"type:uuid"`
 }
+type CreateProjectPayload struct {
+	Name        string    `json:"name"`
+	Github      string    `json:"github"`
+	Description string    `json:"description"`
+	Tags        []Tag     `json:"tags"`
+	UserID      uuid.UUID `json:"userId"`
+}
+
+type UpdateProjectPayload struct {
+	Name        *string `json:"name"`
+	Github      *string `json:"github"`
+	Description *string `json:"description"`
+	Tags        []Tag   `json:"tags"`
+}

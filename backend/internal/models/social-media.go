@@ -8,3 +8,9 @@ type SocialMediaHandle struct {
 	URL    string    `json:"url"`
 	UserID uuid.UUID `json:"userId" gorm:"type:uuid"`
 }
+
+type CreateSocialMediaHandlePayload struct {
+	Name   string    `json:"name"`
+	URL    string    `json:"url"`
+	UserID uuid.UUID `json:"userId"`
+}
