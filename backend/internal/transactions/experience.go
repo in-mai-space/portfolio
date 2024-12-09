@@ -31,10 +31,6 @@ func GetExperience(db *gorm.DB, id uuid.UUID) (*model.Experience, error) {
 	return experience, nil
 }
 
-func GetExperiencesByTag(db *gorm.DB, tags []*model.Tag) ([]*model.Experience, error) {
-	return nil, nil
-}
-
 func GetAllExperience(db *gorm.DB, page int, limit int) ([]*model.Experience, error) {
 	var experiences []*model.Experience
 	offset := (page - 1) * limit
