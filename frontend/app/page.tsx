@@ -14,13 +14,6 @@ const sections = [
 ];
 
 const HomePage = () => {
-  useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
   return (
     <div
       className="min-h-screen dark:bg-black bg-white bg-cover bg-center bg-no-repeat select-none px-20"

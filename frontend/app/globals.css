@@ -2,14 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #000000;
-  --foreground: #ffffff;
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: Raleway, Helvetica, sans-serif;
 }
 

@@ -18,7 +18,7 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
   const [viewMore, setViewMore] = useState<boolean>(false);
 
   return (
-    <div className="flex flex-col p-5 border-[1px] border-white w-full rounded-3xl">
+    <div className="flex flex-col p-5 border-[1px] dark:border-white border-black w-full rounded-3xl">
       <div className="flex flex-row justify-between items-center">
         <div>
           <p className="font-bold text-[30px] dark:text-white text-black">
