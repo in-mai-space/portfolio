@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import About from "@/components/about";
 import Project from "@/components/project";
 import Divider from "@/components/ui/divider";
