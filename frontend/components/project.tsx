@@ -6,10 +6,12 @@ const Project = () => {
   const DESCRIPTION =
     "A better way to drive student engagement in clubs and events on campus.";
   return (
-    <div className="flex flex-col min-h-screen justify-center">
-      <div className="flex flex-col pb-10">
-        <p className="text-[100px]">my projects</p>
-        <p className="text-[30px] w-[50%]">{PROJECT_DESCRIPTION}</p>
+    <div className="flex flex-col justify-center gap-10">
+      <div className="flex flex-col pb-10 gap-5">
+        <p className="text-[100px] dark:text-white text-black">my projects</p>
+        <p className="text-[30px] w-[50%] dark:text-white text-black">
+          {PROJECT_DESCRIPTION}
+        </p>
       </div>
       <div className="flex flex-row gap-10">
         <ProjectCard github="" name={NAME} description={DESCRIPTION} />

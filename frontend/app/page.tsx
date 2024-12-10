@@ -1,28 +1,39 @@
 "use client";
 
-import Navbar from "@/components/ui/navbar";
+import React from "react";
 import About from "@/components/about";
 import Project from "@/components/project";
 import Divider from "@/components/ui/divider";
 import Experience from "@/components/experience";
 import Footer from "@/components/footer";
 
-export default function Home() {
+const sections = [
+  { component: About },
+  { component: Project },
+  { component: Experience },
+];
+
+const HomePage = () => {
   return (
     <div
-      className="select-none pt-20 px-20 min-h-screen bg-cover bg-center bg-no-repeat"
+      className="min-h-screen dark:bg-black bg-white bg-cover bg-center bg-no-repeat select-none px-20"
       style={{
         backgroundImage: 'url("/background.svg")',
       }}
     >
-      <Navbar />
-      <About />
-      <Divider />
-      <Project />
-      <Divider />
-      <Experience />
-      <Divider />
-      <Footer />
+      <div>
+        {sections.map(({ component: Section }, index) => (
+          <div key={index}>
+            <div className="pt-[6%] pb-[12%]">
+              <Section />
+            </div>
+            <Divider />
+          </div>
+        ))}
+        <Footer />
+      </div>
     </div>
   );
-}
+};
+
+export default HomePage;
