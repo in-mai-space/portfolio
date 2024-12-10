@@ -7,12 +7,7 @@ interface ButtonProps {
   filled?: boolean;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  onPress,
-  text,
-  icon = false,
-  filled = false,
-}) => {
+const Button: React.FC<ButtonProps> = ({ onPress, text, filled = false }) => {
   return (
     <button
       onClick={onPress}

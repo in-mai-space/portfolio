@@ -7,7 +7,6 @@ interface ExperienceCard {
   startDate: Date;
   endDate?: Date;
   description: string;
-  tags?: any[];
 }
 
 const ExperienceCard: React.FC<ExperienceCard> = ({
@@ -15,8 +14,6 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
   company,
   startDate,
   endDate,
-  description,
-  tags,
 }) => {
   const [viewMore, setViewMore] = useState<boolean>(false);
 
@@ -38,12 +35,15 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
       </div>
       {viewMore && (
         <div className="pt-2 text-[25px]">
-          <p>• Incorporated AWS S3 into management of user's image endpoint</p>
           <p>
-            • Incorporated OpenAI API to create vector embedding's for natural
-            language search
+            {"• Incorporated AWS S3 into management of user's image endpoint"}
           </p>
-          <p>• Implemented home page, event page and profile page</p>
+          <p>
+            {
+              "• Incorporated OpenAI API to create vector embedding's for natural language search"
+            }
+          </p>
+          <p>{"• Implemented home page, event page and profile page"}</p>
         </div>
       )}
     </div>

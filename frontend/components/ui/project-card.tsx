@@ -5,7 +5,6 @@ interface ProjectCardProps {
   name: string;
   description: string;
   github: string;
-  tags?: any[]; // TODO: create type for tags later
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({

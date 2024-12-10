@@ -7,7 +7,7 @@ const Navbar = () => {
   return (
     <div className="flex flex-row items-center justify-between">
       <div className="flex flex-row items-center gap-5">
-        <p className="text-[40px]">mai's space</p>
+        <p className="text-[40px]">{"mai's space"}</p>
         <MenuBar />
       </div>
       <div className="flex flex-row items-center gap-10">
