@@ -7,7 +7,9 @@ const Navbar = () => {
   return (
     <div className="flex flex-row items-center justify-between">
       <div className="flex flex-row items-center gap-5">
-        <p className="text-[40px]">{"mai's space"}</p>
+        <p className="text-[40px] dark:text-white text-black">
+          {"mai's space"}
+        </p>
         <MenuBar />
       </div>
       <div className="flex flex-row items-center gap-10">
@@ -15,7 +17,7 @@ const Navbar = () => {
         <button>
           <FontAwesomeIcon
             icon={faUser}
-            className="hover:text-slate-600 text-[25px] transition-colors duration-200 ease-in-out"
+            className="dark:text-white text-black hover:text-slate-600 dark:hover:text-slate-600 text-[25px] transition-colors duration-200 ease-in-out"
           />
         </button>
       </div>

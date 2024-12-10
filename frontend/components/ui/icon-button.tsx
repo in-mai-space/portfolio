@@ -10,7 +10,10 @@ const IconButton = ({
 }) => {
   return (
     <button onProgress={onPress}>
-      <FontAwesomeIcon icon={icon} className="text-[50px]" />
+      <FontAwesomeIcon
+        icon={icon}
+        className="text-[50px] dark:text-white text-black"
+      />
     </button>
   );
 };

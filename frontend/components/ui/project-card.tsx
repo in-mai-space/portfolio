@@ -24,10 +24,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <div className="w-10 h-10 bg-white/30 rounded-full"></div>
       </div>
       <div className="flex flex-col gap-3">
-        <p className="font-bold text-[40px] leading-tight text-white drop-shadow-md">
+        <p className="font-bold text-[40px] dark:text-white text-black leading-tight drop-shadow-md">
           {name}
         </p>
-        <p className="line-clamp-3 text-[20px] text-white/80 drop-shadow-sm">
+        <p className="line-clamp-3 text-[20px] dark:text-white text-black drop-shadow-sm">
           {description}
         </p>
       </div>

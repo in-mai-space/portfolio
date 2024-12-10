@@ -6,7 +6,9 @@ const Footer = () => {
     <div className="flex flex-col py-20 justify-center items-center gap-10">
       <SocialMedia />
       <MenuBar />
-      <p>Made with ❤️ by Mai. 2024 All Rights Reserved.</p>
+      <p className="dark:text-white text-black">
+        Made with ❤️ by Mai. 2024 All Rights Reserved.
+      </p>
     </div>
   );
 };

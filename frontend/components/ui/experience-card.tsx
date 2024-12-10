@@ -21,10 +21,12 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
     <div className="flex flex-col p-5 border-[1px] border-white w-full rounded-3xl">
       <div className="flex flex-row justify-between items-center">
         <div>
-          <p className="font-bold text-[30px]">{company}</p>
-          <p className="text-[25px]">{position}</p>
+          <p className="font-bold text-[30px] dark:text-white text-black">
+            {company}
+          </p>
+          <p className="text-[25px] dark:text-white text-black">{position}</p>
         </div>
-        <div className="text-[25px]">
+        <div className="text-[25px] dark:text-white text-black">
           {startDate.toLocaleDateString()} -{" "}
           {endDate?.toLocaleDateString() || "Present"}
         </div>
@@ -34,7 +36,7 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
         />
       </div>
       {viewMore && (
-        <div className="pt-2 text-[25px]">
+        <div className="pt-2 text-[25px] dark:text-white text-black">
           <p>
             {"• Incorporated AWS S3 into management of user's image endpoint"}
           </p>
