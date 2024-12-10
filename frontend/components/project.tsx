@@ -6,7 +6,7 @@ const Project = () => {
   const DESCRIPTION =
     "A better way to drive student engagement in clubs and events on campus.";
   return (
-    <div className="flex flex-col h-screen justify-center">
+    <div className="flex flex-col min-h-screen justify-center">
       <div className="flex flex-col pb-10">
         <p className="text-[100px]">my projects</p>
         <p className="text-[30px] w-[50%]">{PROJECT_DESCRIPTION}</p>

@@ -2,7 +2,7 @@ import ExperienceCard from "./ui/experience-card";
 
 const Experience = () => {
   return (
-    <div className="flex flex-col h-screen gap-10 justify-center">
+    <div className="flex flex-col min-h-screen gap-10 justify-center">
       <div className="flex justify-end">
         <p className="text-[100px]">my experience</p>
       </div>
