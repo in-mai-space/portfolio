@@ -24,7 +24,7 @@ const HomePage = () => {
       <div>
         {sections.map(({ component: Section }, index) => (
           <div key={index}>
-            <div className="pt-[6%] pb-[12%]">
+            <div className="pt-[5%] pb-[10%]">
               <Section />
             </div>
             <Divider />
