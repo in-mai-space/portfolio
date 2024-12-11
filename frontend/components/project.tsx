@@ -14,9 +14,21 @@ const Project = () => {
         </p>
       </div>
       <div className="flex flex-row gap-10">
-        <ProjectCard github="" name={NAME} description={DESCRIPTION} />
-        <ProjectCard github="" name={NAME} description={DESCRIPTION} />
-        <ProjectCard github="" name={NAME} description={DESCRIPTION} />
+        <ProjectCard
+          github="https://github.com/GenerateNU/sac"
+          name={NAME}
+          description={DESCRIPTION}
+        />
+        <ProjectCard
+          github="https://github.com/GenerateNU/snapper"
+          name={NAME}
+          description={DESCRIPTION}
+        />
+        <ProjectCard
+          github="https://github.com/in-mai-space/portfolio"
+          name={NAME}
+          description={DESCRIPTION}
+        />
       </div>
     </div>
   );

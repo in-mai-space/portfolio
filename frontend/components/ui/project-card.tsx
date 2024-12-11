@@ -1,5 +1,7 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import IconButton from "./icon-button";
+import { useState } from "react";
+import Button from "./button";
 
 interface ProjectCardProps {
   name: string;
@@ -12,43 +14,89 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   github,
 }) => {
-  const Arrow = () => {
-    return (
-      <svg
-        className="dark:stroke-white stroke-black"
-        width="65"
-        height="65"
-        viewBox="0 0 65 65"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M2 63L63 2M63 2H2M63 2V63"
-          strokeWidth="4"
-          strokeLinecap="round"
-        />
-      </svg>
-    );
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // check if the click was not on the GitHub icon
+    const target = e.target as HTMLElement;
+    const isGitHubIconClicked = target.closest("a") || target.closest("svg");
+
+    if (!isGitHubIconClicked) {
+      setIsExpanded(!isExpanded);
+    }
   };
 
   return (
-    <div className="flex flex-col p-8 w-[450px] h-[500px] bg-white/10 backdrop-blur-xl rounded-xl shadow-xl border border-white/30 justify-between transition-all duration-300 hover:shadow-2xl hover:scale-[1.05]">
-      <div className="flex flex-row justify-between items-center">
-        <a href={github} target="_blank" rel="noopener noreferrer">
-          <IconButton
-            onPress={() => window.open(github, "_blank")}
-            icon={faGithub}
-          />
-        </a>
-        <Arrow />
+    <div
+      className={`
+        flex flex-row 
+        p-8 
+        ${isExpanded ? "w-[900px]" : "w-[450px]"} 
+        h-[500px] 
+        bg-white/10 
+        backdrop-blur-xl 
+        rounded-xl 
+        shadow-xl 
+        border 
+        border-white/30 
+        justify-between 
+        transition-all 
+        duration-500 
+        ease-in-out
+        overflow-hidden
+        cursor-pointer
+      `}
+      onClick={handleCardClick}
+    >
+      <div className="flex flex-col justify-between w-[450px]">
+        <div className="flex flex-row justify-between items-center">
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <IconButton
+              onPress={() => window.open(github, "_blank")}
+              icon={faGithub}
+            />
+          </a>
+        </div>
+        <div className="flex flex-col gap-3">
+          <p className="font-bold text-[40px] dark:text-white text-black leading-tight">
+            {name}
+          </p>
+          <p className="line-clamp-3 text-[25px] dark:text-white text-black">
+            {description}
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col gap-3">
-        <p className="font-bold text-[40px] dark:text-white text-black leading-tight">
-          {name}
-        </p>
-        <p className="line-clamp-3 text-[25px] dark:text-white text-black">
-          {description}
-        </p>
+
+      <div
+        className={`
+          flex flex-col 
+          justify-start 
+          items-start 
+          transition-all 
+          duration-500 
+          ease-in-out
+          ${
+            isExpanded
+              ? "opacity-100 w-[450px] visible"
+              : "opacity-0 w-0 invisible"
+          }
+        `}
+      >
+        <div className="pl-8 flex flex-col gap-5">
+          <p className="dark:text-white text-black text-[20px]">
+            More details about {name} would go here.
+          </p>
+          <div className="flex flex-row gap-4 flex-wrap">
+            <Button tag icon text="Go" />
+            <Button tag icon text="Expo" />
+            <Button tag icon text="iOS Development" />
+          </div>
+        </div>
       </div>
     </div>
   );
