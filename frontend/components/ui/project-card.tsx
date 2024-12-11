@@ -1,20 +1,32 @@
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import IconButton from "./icon-button";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Button from "./button";
 
 interface ProjectCardProps {
   name: string;
   description: string;
   github: string;
+  id: string;
+  activeCardId: string | null;
+  setActiveCardId: (id: string) => void;
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
   name,
   description,
   github,
+  id,
+  activeCardId,
+  setActiveCardId,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(id === activeCardId);
+
+  useMemo(() => {
+    if (activeCardId !== id) {
+      setIsExpanded(false);
+    }
+  }, [activeCardId]);
 
   const handleCardClick = (e: React.MouseEvent<HTMLDivElement>) => {
     // check if the click was not on the GitHub icon
@@ -24,6 +36,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     if (!isGitHubIconClicked) {
       setIsExpanded(!isExpanded);
     }
+
+    setActiveCardId(id);
   };
 
   return (
@@ -45,6 +59,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         ease-in-out
         overflow-hidden
         cursor-pointer
+        hover:scale-105
       `}
       onClick={handleCardClick}
     >
