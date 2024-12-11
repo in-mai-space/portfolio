@@ -23,14 +23,9 @@ const About = () => {
               <SocialMedia />
             </div>
             <div className="flex justify-end gap-5 flex-wrap">
-              <Button disabled icon onPress={() => "hi"} text="Golang" />
-              <Button disabled icon onPress={() => "hi"} text="TypeScript" />
-              <Button
-                disabled
-                icon
-                onPress={() => "hi"}
-                text="iOS Development"
-              />
+              <Button tag icon text="Golang" />
+              <Button tag icon text="TypeScript" />
+              <Button tag icon text="iOS Development" />
             </div>
           </div>
         </div>

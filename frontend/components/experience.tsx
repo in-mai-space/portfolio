@@ -11,19 +11,19 @@ const Experience = () => {
           position="Software Engineer"
           company="Generate Product Development"
           startDate={new Date()}
-          description="Lorem ipsum dolor sit amet. Sed nulla explicabo et numquam repellendus ut sint voluptates et assumenda natus rem dicta aperiam non repudiandae cumque. Ut dolorem voluptatum et sequi nobis vel omnis nostrum ex deserunt recusandae ex consequatur cupiditate est natus consequatur. Aut earum dolor rem molestiae voluptates et ipsam eligendi qui incidunt dolore ad error fuga. Ut dolor tenetur est vero quasi et voluptatibus voluptatum est maxime repudiandae."
+          description="Incorporated AWS S3 into management of user's image endpoint. Incorporated OpenAI API to create vector embedding's for natural language search. Implemented home page, event page and profile page."
         />
         <ExperienceCard
           position="Software Engineer"
           company="Generate Product Development"
           startDate={new Date()}
-          description="Lorem ipsum dolor sit amet. Sed nulla explicabo et numquam repellendus ut sint voluptates et assumenda natus rem dicta aperiam non repudiandae cumque. Ut dolorem voluptatum et sequi nobis vel omnis nostrum ex deserunt recusandae ex consequatur cupiditate est natus consequatur. Aut earum dolor rem molestiae voluptates et ipsam eligendi qui incidunt dolore ad error fuga. Ut dolor tenetur est vero quasi et voluptatibus voluptatum est maxime repudiandae."
+          description="Incorporated AWS S3 into management of user's image endpoint. Incorporated OpenAI API to create vector embedding's for natural language search. Implemented home page, event page and profile page."
         />
         <ExperienceCard
           position="Software Engineer"
           company="Generate Product Development"
           startDate={new Date()}
-          description="Lorem ipsum dolor sit amet. Sed nulla explicabo et numquam repellendus ut sint voluptates et assumenda natus rem dicta aperiam non repudiandae cumque. Ut dolorem voluptatum et sequi nobis vel omnis nostrum ex deserunt recusandae ex consequatur cupiditate est natus consequatur. Aut earum dolor rem molestiae voluptates et ipsam eligendi qui incidunt dolore ad error fuga. Ut dolor tenetur est vero quasi et voluptatibus voluptatum est maxime repudiandae."
+          description="Incorporated AWS S3 into management of user's image endpoint. Incorporated OpenAI API to create vector embedding's for natural language search. Implemented home page, event page and profile page."
         />
       </div>
     </div>

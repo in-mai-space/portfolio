@@ -7,7 +7,7 @@ updates:
     groups:
       backend:
         patterns:
-         - "*"
+          - "*"
   - package-ecosystem: npm
     directory: ./frontend/
     schedule:
@@ -15,4 +15,4 @@ updates:
     groups:
       mobile:
         patterns:
-         - "*"
+          - "*"

@@ -43,10 +43,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         <Arrow />
       </div>
       <div className="flex flex-col gap-3">
-        <p className="font-bold text-[40px] dark:text-white text-black leading-tight drop-shadow-md">
+        <p className="font-bold text-[40px] dark:text-white text-black leading-tight">
           {name}
         </p>
-        <p className="line-clamp-3 text-[20px] dark:text-white text-black drop-shadow-sm">
+        <p className="line-clamp-3 text-[25px] dark:text-white text-black">
           {description}
         </p>
       </div>

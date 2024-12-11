@@ -1,11 +1,11 @@
 import React from "react";
 
 interface ButtonProps {
-  onPress: () => void;
+  onPress?: () => void;
   text: string;
   filled?: boolean;
   icon?: boolean;
-  disabled?: boolean;
+  tag?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -13,7 +13,7 @@ const Button: React.FC<ButtonProps> = ({
   text,
   filled = false,
   icon = false,
-  disabled = false,
+  tag = false,
 }) => {
   const Diamond = () => {
     return (
@@ -35,8 +35,8 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onPress}
       className={`rounded-full px-10 py-2 flex flex-row items-center justify-center gap-2 ${
         filled
-          ? `bg-black text-white ${!disabled && "hover:bg-slate-800"} dark:bg-white dark:text-black ${!disabled && "dark:hover:bg-black"}`
-          : `border-[0.5px] text-black dark:text-white border-black ${!disabled && "hover:bg-black hover:text-white"} dark:border-white ${!disabled && "dark:hover:bg-white dark:hover:text-black"}`
+          ? `bg-black text-white ${!tag && "hover:bg-slate-800"} dark:bg-white dark:text-black ${!tag && "dark:hover:bg-black"}`
+          : `border-[0.5px] text-black dark:text-white border-black ${!tag && "hover:bg-black hover:text-white"} dark:border-white ${!tag && "dark:hover:bg-white dark:hover:text-black"}`
       } transition-colors duration-300 ease-in-out`}
     >
       <p className="text-[20px]">{text}</p>

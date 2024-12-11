@@ -13,10 +13,6 @@ export default {
         foreground: "var(--foreground)",
       },
     },
-    fontFamily: {
-      raleway: ["Raleway", "sans-serif"],
-      space: ["Space Grotesk", "sans-serif"],
-    },
   },
   darkMode: "selector",
   plugins: [],

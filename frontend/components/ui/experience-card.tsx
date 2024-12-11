@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Button from "./button";
+import { formatTime } from "@/utils/time";
+import { formatJobDescription } from "@/utils/job-description";
 
 interface ExperienceCard {
   position: string;
@@ -14,12 +16,13 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
   company,
   startDate,
   endDate,
+  description,
 }) => {
   const [viewMore, setViewMore] = useState<boolean>(false);
   const Star = () => {
     return (
       <svg
-        className="dark:fill-white fill-black ml-5"
+        className="dark:fill-white fill-black"
         width="63"
         height="63"
         viewBox="0 0 63 63"
@@ -32,7 +35,7 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
   };
 
   return (
-    <div className="flex flex-col p-5 border-[1px] dark:border-white border-black w-full rounded-3xl">
+    <div className="flex flex-col p-5 border-[1px] hover:scale-[102%] transition-transform duration-300 dark:border-white border-black w-full rounded-3xl px-10">
       <div className="flex flex-row justify-between items-center">
         <Star />
         <div>
@@ -42,27 +45,28 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
           <p className="text-[25px] dark:text-white text-black">{position}</p>
         </div>
         <div className="text-[25px] dark:text-white text-black">
-          {startDate.toLocaleDateString()} -{" "}
-          {endDate?.toLocaleDateString() || "Present"}
+          {formatTime(startDate, endDate)}
         </div>
         <Button
           text={viewMore ? "View less" : "View more"}
           onPress={() => setViewMore(!viewMore)}
         />
       </div>
-      {viewMore && (
-        <div className="pt-2 text-[25px] dark:text-white text-blac ml-5">
-          <p>
-            {"• Incorporated AWS S3 into management of user's image endpoint"}
-          </p>
-          <p>
-            {
-              "• Incorporated OpenAI API to create vector embedding's for natural language search"
-            }
-          </p>
-          <p>{"• Implemented home page, event page and profile page"}</p>
+
+      <div
+        className={`overflow-hidden transition-all flex flex-col gap-8 duration-500 ease-in-out ${viewMore ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+      >
+        <div className="pt-5 text-[25px] dark:text-white text-black ml-5">
+          {formatJobDescription(description).map((point, index) => (
+            <p key={index}>{point}</p>
+          ))}
         </div>
-      )}
+        <div className="flex flex-row gap-5 flex-wrap mb-5">
+          <Button tag icon text="Golang" />
+          <Button tag icon text="TypeScript" />
+          <Button tag icon text="iOS Development" />
+        </div>
+      </div>
     </div>
   );
 };
