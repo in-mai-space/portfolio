@@ -8,12 +8,12 @@ import (
 
 	go_json "github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
-	"gorm.io/gorm"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 // set up app by configuring middleware and routes
-func InitServer(db *gorm.DB, config *config.GlobalConfig) *fiber.App {
-	server := createFiberApp(db)
+func InitServer(db *pgxpool.Pool, config *config.GlobalConfig) *fiber.App {
+	server := createFiberApp()
 
 	middlewares.ConfigureMiddlewares(server)
 
@@ -22,7 +22,7 @@ func InitServer(db *gorm.DB, config *config.GlobalConfig) *fiber.App {
 	return server
 }
 
-func createFiberApp(db *gorm.DB) *fiber.App {
+func createFiberApp() *fiber.App {
 	fiberApp := fiber.New(fiber.Config{
 		AppName:      "Mai's Portfolio v1.0",
 		JSONEncoder:  go_json.Marshal,
@@ -32,7 +32,7 @@ func createFiberApp(db *gorm.DB) *fiber.App {
 	return fiberApp
 }
 
-func setUpRoutes(app *fiber.App, db *gorm.DB, authMiddleware func(*fiber.Ctx) error) {
+func setUpRoutes(app *fiber.App, db *pgxpool.Pool, authMiddleware func(*fiber.Ctx) error) {
 	app.Get("/healthcheck", controllers.HealthcheckController)
 
 	// TODO: set-up API route

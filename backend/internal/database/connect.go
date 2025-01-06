@@ -1,18 +1,19 @@
 package database
 
 import (
-	"fmt"
+	"context"
 	"in-mai-space/portfolio/internal/config"
 
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
-func ConnectDB(db *config.DatabaseConfig) (*gorm.DB, error) {
+func ConnectDB(db *config.DatabaseConfig) (*pgxpool.Pool, error) {
 	dsn := db.GetDSNString()
-	gormDB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	pool, err := pgxpool.New(context.Background(), dsn)
+
 	if err != nil {
-		return nil, fmt.Errorf("failed to open database connection: %w", err)
+		return nil, err
 	}
-	return gormDB, nil
+
+	return pool, nil
 }
