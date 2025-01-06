@@ -3,6 +3,7 @@ package internal
 import (
 	"in-mai-space/portfolio/internal/config"
 	"in-mai-space/portfolio/internal/middlewares"
+	"in-mai-space/portfolio/internal/utilities"
 
 	go_json "github.com/goccy/go-json"
 	"github.com/gofiber/fiber/v2"
@@ -22,11 +23,10 @@ func InitApp(db *gorm.DB, config *config.GlobalConfig) *fiber.App {
 
 func createFiberApp(db *gorm.DB) *fiber.App {
 	app := fiber.New(fiber.Config{
-		AppName:     "Mai's Portfolio v1.0",
-		JSONEncoder: go_json.Marshal,
-		JSONDecoder: go_json.Unmarshal,
-		// TODO: create custom errors for the app
-		//ErrorHandler: utilities.ErrorHandler,
+		AppName:      "Mai's Portfolio v1.0",
+		JSONEncoder:  go_json.Marshal,
+		JSONDecoder:  go_json.Unmarshal,
+		ErrorHandler: utilities.AppErrorHandler,
 	})
 	return app
 }
