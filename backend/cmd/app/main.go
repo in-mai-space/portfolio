@@ -24,9 +24,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	app := internal.InitApp(db, config)
+	server := internal.InitServer(db, config)
 
-	startServer(app)
+	startServer(server)
 
 	// TODO: handle server shutting down
 }
