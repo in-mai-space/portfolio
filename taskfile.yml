@@ -1,0 +1,35 @@
+version: '3'
+
+tasks:
+  frontend:install:
+    desc: "Install frontend dependencies"
+    cmds:
+      - cd frontend && npm install
+
+  backend:install:
+    desc: "Install backend dependencies"
+    cmds:
+      - cd backend && npm install
+
+  frontend:dev:
+    desc: "Run frontend development server"
+    cmds:
+      - cd frontend && npm run dev
+
+  backend:dev:
+    desc: "Run backend development server"
+    cmds:
+      - cd backend && go run ./cmd/app
+
+  test:
+    desc: "Run backend tests"
+    cmds:
+      - cd backend && go test
+
+  dev:
+    desc: "Run backend & frontend development server"
+    deps: [frontend:dev, backend:dev]
+
+
+
+ 
