@@ -9,7 +9,7 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func IsAuthorized(config *config.GlobalConfig) fiber.Handler {
+func isAuthorized(config *config.GlobalConfig) fiber.Handler {
 	return func(ctx *fiber.Ctx) error {
 		authHeader := ctx.Get("Authorization")
 
