@@ -13,9 +13,9 @@ import (
 func InitApp(db *gorm.DB, config *config.GlobalConfig) *fiber.App {
 	app := createFiberApp(db)
 
-	middlewares.ConfigureMiddlewares(app)
+	middlewares.ConfigureMiddlewares(app, config)
 
-	setUpRoutes(app, db, config, middlewares.IsAuthorized(config))
+	setUpRoutes(app, db)
 
 	return app
 }
@@ -31,14 +31,11 @@ func createFiberApp(db *gorm.DB) *fiber.App {
 	return app
 }
 
-func setUpRoutes(app *fiber.App, db *gorm.DB, config *config.GlobalConfig, authMiddleware func(*fiber.Ctx) error) {
+func setUpRoutes(app *fiber.App, db *gorm.DB) {
 	// healthcheck route
 	app.Get("/healthcheck", func(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusOK).SendString("OK")
 	})
-
-	// middleware for /api/v1
-	app.Group("/api/v1", authMiddleware)
 
 	// TODO: set-up API route
 
