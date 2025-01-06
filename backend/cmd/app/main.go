@@ -5,30 +5,30 @@ import (
 	"in-mai-space/portfolio/internal"
 	"in-mai-space/portfolio/internal/config"
 	"in-mai-space/portfolio/internal/database"
-	"in-mai-space/portfolio/internal/utils"
+	"os"
 	"path/filepath"
 
 	"github.com/gofiber/fiber/v2"
 )
 
 func main() {
-	config, err := config.GetConfig(filepath.Join("..", ".env"))
+	config, err := config.GetConfigurations(filepath.Join("..", ".env"))
 
 	if err != nil {
-		utils.Exit(fmt.Sprintf("failed to get configurations: %s", err.Error()))
+		os.Exit(1)
 	}
 
 	db, err := database.ConnectDB(&config.DatabaseConfig)
 
 	if err != nil {
-		utils.Exit(fmt.Sprintf("failed to connect to database: %s", err.Error()))
+		os.Exit(1)
 	}
 
 	app := internal.InitApp(db, config)
 
 	startServer(app)
 
-	// handle server shutting down
+	// TODO: handle server shutting down
 }
 
 func startServer(app *fiber.App) {

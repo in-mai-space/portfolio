@@ -14,7 +14,7 @@ type GlobalConfig struct {
 }
 
 // load env variables and parse it into a global config
-func GetConfig(path string) (*GlobalConfig, error) {
+func GetConfigurations(path string) (*GlobalConfig, error) {
 	if path != "" {
 		err := godotenv.Load(path)
 		if err != nil {

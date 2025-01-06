@@ -14,11 +14,5 @@ func ConnectDB(db *config.DatabaseConfig) (*gorm.DB, error) {
 	if err != nil {
 		return nil, fmt.Errorf("failed to open database connection: %w", err)
 	}
-
-	// err = gormDB.AutoMigrate(&models.User{}, &models.Experience{}, &models.Project{}, &models.SocialMediaHandle{}, &models.Tag{})
-	// if err != nil {
-	// 	return nil, fmt.Errorf("failed to automigrate models: %w", err)
-	// }
-
 	return gormDB, nil
 }

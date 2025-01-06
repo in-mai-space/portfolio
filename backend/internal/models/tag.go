@@ -1,6 +1,8 @@
 package models
 
-import "github.com/google/uuid"
+import (
+	"github.com/google/uuid"
+)
 
 type Tag struct {
 	ID          uuid.UUID    `json:"id" gorm:"type:uuid;default:gen_random_uuid();primary_key"`
