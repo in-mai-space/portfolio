@@ -8,11 +8,11 @@ permissions:
   issues: write
   pull-requests: write
   contents: read
+  statuses: write
      
 jobs:
   deploy:
     name: Deploy
-    # Only run if it#s a PR and the comment contains /deploy
     if: github.event.issue.pull_request && contains(github.event.comment.body, '/deploy')
     runs-on: ubuntu-latest
 
@@ -38,7 +38,6 @@ jobs:
         with:
           node-version: 16
 
-      # Do the actual deployment (exit randomly with 0 or 1)
       - name: Deploy
         run: |
           echo "Deploying..."
