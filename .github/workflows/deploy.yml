@@ -41,14 +41,14 @@ jobs:
       - name: Deploy
         run: |
           echo "Deploying..."
-          exit $(($RANDOM%2))
+          exit 0
 
       - name: Add workflow result as comment on PR
         uses: actions/github-script@v6
         if: always()
         with:
           script: |
-            const name = '${{ github.workflow	}}';
+            const name = '${{ github.workflow }}';
             const url = '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}';
             const success = '${{ job.status }}' === 'success';
             const body = `${name}: ${success ? 'succeeded ✅' : 'failed ❌'}\n${url}`;
@@ -67,3 +67,8 @@ jobs:
           sha: ${{ steps.comment-branch.outputs.head_sha }}
           token: ${{ secrets.GITHUB_TOKEN }}
           status: ${{ job.status }}
+
+      - name: Notify Slack
+        run: |
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Hey <@U06D9JHUUMP> designers and engineers 💛 \n\nA new version of Dearly is ready for review: PR title\n\n📱 Test UI/UX: url\n✨ View PR: link\n🔗 View ticket: link"}' https://hooks.slack.com/services/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
+        if: always()
