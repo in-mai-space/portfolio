@@ -2,8 +2,8 @@ package internal
 
 import (
 	"in-mai-space/portfolio/internal/config"
-	"in-mai-space/portfolio/internal/controllers"
 	"in-mai-space/portfolio/internal/middlewares"
+	"in-mai-space/portfolio/internal/routes"
 	"in-mai-space/portfolio/internal/utilities"
 
 	go_json "github.com/goccy/go-json"
@@ -17,7 +17,7 @@ func InitServer(db *pgxpool.Pool, config *config.GlobalConfig) *fiber.App {
 
 	middlewares.ConfigureMiddlewares(server)
 
-	setUpRoutes(server, db, middlewares.IsAuthorized(config))
+	routes.SetUpRoutes(server, db, middlewares.IsAuthorized(config))
 
 	return server
 }
@@ -30,18 +30,4 @@ func createFiberApp() *fiber.App {
 		ErrorHandler: utilities.AppErrorHandler,
 	})
 	return fiberApp
-}
-
-func setUpRoutes(app *fiber.App, db *pgxpool.Pool, authMiddleware func(*fiber.Ctx) error) {
-	app.Get("/healthcheck", controllers.HealthcheckController)
-
-	// TODO: set-up API route
-
-	handleNonExistingRoute(app)
-}
-
-func handleNonExistingRoute(server *fiber.App) {
-	server.Use(func(c *fiber.Ctx) error {
-		return c.Status(fiber.StatusNotFound).SendString("The requested route does not exist")
-	})
 }
