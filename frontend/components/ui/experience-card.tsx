@@ -8,7 +8,8 @@ interface ExperienceCard {
   company: string;
   startDate: Date;
   endDate?: Date;
-  description: string;
+  description?: string;
+  tags?: string[];
 }
 
 const ExperienceCard: React.FC<ExperienceCard> = ({
@@ -17,6 +18,7 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
   startDate,
   endDate,
   description,
+  tags,
 }) => {
   const [viewMore, setViewMore] = useState<boolean>(false);
   const Star = () => {
@@ -37,34 +39,42 @@ const ExperienceCard: React.FC<ExperienceCard> = ({
   return (
     <div className="flex flex-col p-5 border-[1px] hover:scale-[102%] transition-transform duration-300 dark:border-white border-black w-full rounded-3xl px-10">
       <div className="flex flex-row justify-between items-center">
-        <Star />
-        <div>
-          <p className="font-bold text-[30px] dark:text-white text-black">
-            {company}
-          </p>
-          <p className="text-[25px] dark:text-white text-black">{position}</p>
+        <div className="flex flex-row gap-12 items-center">
+          <Star />
+          <div>
+            <p className="font-bold text-[30px] dark:text-white text-black">
+              {company}
+            </p>
+            <p className="text-[25px] dark:text-white text-black">{position}</p>
+          </div>
         </div>
-        <div className="text-[25px] dark:text-white text-black">
-          {formatTime(startDate, endDate)}
+        <div className="flex flex-row gap-5 justify-between w-[50%] items-center">
+          <div className="text-[25px] dark:text-white text-black">
+            {formatTime(startDate, endDate)}
+          </div>
+          <Button
+            text={viewMore ? "View less" : "View more"}
+            onPress={() => setViewMore(!viewMore)}
+          />
         </div>
-        <Button
-          text={viewMore ? "View less" : "View more"}
-          onPress={() => setViewMore(!viewMore)}
-        />
       </div>
 
       <div
         className={`overflow-hidden transition-all flex flex-col gap-8 duration-500 ease-in-out ${viewMore ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <div className="pt-5 text-[25px] dark:text-white text-black ml-5">
-          {formatJobDescription(description).map((point, index) => (
+          {description && formatJobDescription(description).map((point, index) => (
             <p key={index}>{point}</p>
           ))}
         </div>
-        <div className="flex flex-row gap-5 flex-wrap mb-5">
-          <Button tag icon text="Golang" />
-          <Button tag icon text="TypeScript" />
-          <Button tag icon text="iOS Development" />
+        <div className="flex flex-row gap-5 flex-wrap">
+          {tags && tags.length > 0 && (
+            <div className="flex flex-row gap-5 flex-wrap mb-5">
+              {tags.map((tag, index) => (
+                <Button key={index} tag icon text={tag} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

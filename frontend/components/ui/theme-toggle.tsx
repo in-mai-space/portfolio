@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const ThemeToggle = () => {
-  const [dark, setDark] = useState<boolean>(false);
+  const [dark, setDark] = useState<boolean>(true);
 
   const darkMode = () => {
     setDark(true);

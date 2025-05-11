@@ -9,7 +9,8 @@ interface ProjectCardProps {
   github: string;
   id: string;
   activeCardId: string | null;
-  setActiveCardId: (id: string) => void;
+  setActiveCardId: (id: string | null) => void;
+  tags: string[];
 }
 
 const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -19,6 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   id,
   activeCardId,
   setActiveCardId,
+  tags,
 }) => {
   const [isExpanded, setIsExpanded] = useState(id === activeCardId);
 
@@ -34,18 +36,24 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     const isGitHubIconClicked = target.closest("a") || target.closest("svg");
 
     if (!isGitHubIconClicked) {
-      setIsExpanded(!isExpanded);
+      const newExpandedState = !isExpanded;
+      setIsExpanded(newExpandedState);
+      // If we're collapsing the card, set activeCardId to null
+      setActiveCardId(newExpandedState ? id : null);
+    } else {
+      // If GitHub icon is clicked, still set this as active card
+      setActiveCardId(id);
     }
-
-    setActiveCardId(id);
   };
 
   return (
     <div
       className={`
+        relative
+        flex-shrink-0
         flex flex-row 
         p-8 
-        ${isExpanded ? "w-[900px]" : "w-[450px]"} 
+        ${isExpanded ? "w-[900px]" : "w-[450px]"}
         h-[500px] 
         bg-white/10 
         backdrop-blur-xl 
@@ -53,64 +61,64 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         shadow-xl 
         border 
         border-white/30 
-        justify-between 
         transition-all 
         duration-500 
         ease-in-out
         overflow-hidden
         cursor-pointer
-        hover:scale-105
+        hover:scale-[1.02]
+        origin-left
       `}
       onClick={handleCardClick}
     >
-      <div className="flex flex-col justify-between w-[450px]">
-        <div className="flex flex-row justify-between items-center">
+      <div className="flex flex-col justify-between w-[350px]">
+        <div className="flex gap-5 flex-col justify-between items-start">
           <a
             href={github}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => e.stopPropagation()}
           >
             <IconButton
               onPress={() => window.open(github, "_blank")}
               icon={faGithub}
             />
           </a>
+          <div className="flex flex-col gap-3">
+            <p className="font-bold text-[40px] dark:text-white text-black leading-tight">
+              {name}
+            </p>
+            <p className="line-clamp-3 text-[25px] dark:text-white text-black">
+              {description}
+            </p>
+          </div>
         </div>
-        <div className="flex flex-col gap-3">
-          <p className="font-bold text-[40px] dark:text-white text-black leading-tight">
-            {name}
-          </p>
-          <p className="line-clamp-3 text-[25px] dark:text-white text-black">
-            {description}
-          </p>
+        <div className="flex flex-row gap-4 flex-wrap">
+          {tags && tags.map((tag, index) => (
+            <Button key={index} tag icon text={tag} />
+          ))}
         </div>
       </div>
 
       <div
         className={`
-          flex flex-col 
-          justify-start 
-          items-start 
+          ml-8
+          border-l
+          border-transparent
           transition-all 
           duration-500 
           ease-in-out
           ${
             isExpanded
-              ? "opacity-100 w-[450px] visible"
-              : "opacity-0 w-0 invisible"
+              ? "opacity-100 w-[400px]"
+              : "opacity-0 w-0 pl-0"
           }
         `}
       >
-        <div className="pl-8 flex flex-col gap-5">
+        <div className="flex flex-col gap-5">
           <p className="dark:text-white text-black text-[20px]">
-            More details about {name} would go here.
+            More details about {name} coming soon!
           </p>
-          <div className="flex flex-row gap-4 flex-wrap">
-            <Button tag icon text="Go" />
-            <Button tag icon text="Expo" />
-            <Button tag icon text="iOS Development" />
-          </div>
         </div>
       </div>
     </div>

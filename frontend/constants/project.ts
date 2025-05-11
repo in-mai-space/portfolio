@@ -1,2 +1,2 @@
 export const PROJECT_DESCRIPTION =
-  "i like discovering new technologies and learning about software design and architecture through building products collaboratively and independently";
+  "i explore software design and architecture by building products for clients with teams for and on my own"

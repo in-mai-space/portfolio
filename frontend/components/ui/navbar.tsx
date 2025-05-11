@@ -1,6 +1,4 @@
 import ThemeToggle from "./theme-toggle";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 import MenuBar from "./menu";
 
 const Navbar = () => {
@@ -12,15 +10,7 @@ const Navbar = () => {
         </p>
         <MenuBar />
       </div>
-      <div className="flex flex-row items-center gap-10">
-        <ThemeToggle />
-        <button>
-          <FontAwesomeIcon
-            icon={faUser}
-            className="dark:text-white text-black hover:text-slate-600 dark:hover:text-slate-600 text-[25px] transition-colors duration-200 ease-in-out"
-          />
-        </button>
-      </div>
+      <ThemeToggle />
     </div>
   );
 };

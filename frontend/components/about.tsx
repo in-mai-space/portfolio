@@ -5,10 +5,10 @@ import SocialMedia from "./ui/social-media";
 const About = () => {
   const BIO = "hi i'm mai!";
   const DESCRIPTION =
-    "i'm a second year cs major at northeastern with math minor. i'm interested in software design and architecture!";
+    "i'm studying cs + math @ neu with an interest in software design and architecture!";
 
   return (
-    <div className="flex flex-col gap-32">
+    <div className="flex flex-col gap-28">
       <Navbar />
       <div>
         <p className="text-[200px] dark:text-white text-black">{BIO}</p>

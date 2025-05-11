@@ -3,10 +3,31 @@ import ProjectCard from "./ui/project-card";
 import { useState } from "react";
 
 const Project = () => {
-  const NAME = "Student Activity Calendar";
-  const DESCRIPTION =
-    "A better way to drive student engagement in clubs and events on campus.";
-
+  const PROJECTS = [{
+    name: "Dearly",
+    description: "A better way to connect with your loved ones",
+    github: "https://github.com/GenerateNU/dearly",
+    tags: ["TypeScript", "SQL", "AWS", "React Native"]
+  },
+  {
+    name: "Student Activity Calendar",
+    description: "A better way to drive student engagement",
+    github: "https://github.com/GenerateNU/sac",
+    tags: ["Go", "TypeScript", "React Native"]
+  },
+  {
+    name: "Snapper",
+    description: "A social media platform for scuba divers",
+    github: "https://github.com/GenerateNU/snapper",
+    tags: ["MongoDB", "TypeScript", "React Native", ]
+  },
+  {
+    name: "fino (in progress)",
+    description: "Syncing bank transactions with Notion",
+    github: "https://github.com/in-mai-space/fino",
+    tags: ["Golang", "Notion API", "Plaid API"]
+  },
+  ]
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
 
   return (
@@ -17,34 +38,24 @@ const Project = () => {
           {PROJECT_DESCRIPTION}
         </p>
       </div>
-      <div className="flex flex-row gap-10">
-        <ProjectCard
-          id="1"
-          activeCardId={activeCardId}
-          setActiveCardId={setActiveCardId}
-          github="https://github.com/GenerateNU/sac"
-          name={NAME}
-          description={DESCRIPTION}
-        />
-        <ProjectCard
-          id="2"
-          activeCardId={activeCardId}
-          setActiveCardId={setActiveCardId}
-          github="https://github.com/GenerateNU/snapper"
-          name={NAME}
-          description={DESCRIPTION}
-        />
-        <ProjectCard
-          id="3"
-          activeCardId={activeCardId}
-          setActiveCardId={setActiveCardId}
-          github="https://github.com/in-mai-space/portfolio"
-          name={NAME}
-          description={DESCRIPTION}
-        />
+      <div className="overflow-x-auto py-8">
+        <div className="flex flex-row gap-10 min-w-max">
+          {PROJECTS.map((project, index) => (
+            <ProjectCard
+              key={index}
+              tags={project.tags}
+              id={index.toString()}
+              activeCardId={activeCardId}
+              setActiveCardId={setActiveCardId}
+              github={project.github}
+              name={project.name}
+              description={project.description}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
-};
+}
 
 export default Project;
